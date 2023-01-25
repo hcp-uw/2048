@@ -1,0 +1,123 @@
+//Generates values for a single simulation in a single district
+import java.util.*;
+//Allows Random to run
+public class ElectionSimulator {
+
+    public static final Random rand = new Random();
+    //Allows random to be run throughout the program regardless of method location
+    public static final int NUM_SIMS = 5;
+    public static final int NUM_DISTS = 10;
+    public static final double POLL_AVG = 0.52;
+    public static final double POLL_ERR = 0.07;
+    //Given specifications
+
+    public static void main(String[]args) {
+        System.out.println("Welcome to the Election Simulator!");
+        System.out.println("Running " + NUM_SIMS + " simulations of " + NUM_DISTS + " districts.");
+        System.out.println("Our candidate is polling at " + POLL_AVG * 100 + "% with a " + POLL_ERR * 100 + "% margin of error.");
+        System.out.println();
+        //Prints welcome message
+        voteSimulator();
+        
+        //Runs simulation
+        
+    }
+
+    public static void voteSimulator() {
+    //Creates the polling data that the program will display
+        double totalSimPerc = 0;
+        double simPerc = 0.0;
+        for(int numSim = 1; numSim <= NUM_SIMS; numSim++) {
+        //Loop runs the code for how many simulations there are so that each simulation can have seperate data
+            int discVotes = 0;
+            double discPerc = 0;
+            int canVotes = 0; 
+            double simVotes = 0;
+            int canTotalVotes =0;
+            
+            
+            
+            //Keeping the declration of the varibales in the first loop
+            //Resets them after each simulation so the data does not cumulate in the following simulations.
+            for(int discRun = 1; discRun <= NUM_DISTS; discRun++) {
+                //Loop creates the data for the simulations
+                //The loop will run for how many districts there are  
+                discVotes = rand.nextInt(1000)+1;
+                //Creates the voterturn out for 1 district
+                double pollerror = rand.nextGaussian() * 0.5 * POLL_ERR;
+                //creates random polling error
+                double pollp = POLL_AVG + pollerror; 
+                //Finds the percentage of turn out that will vote yes
+                //by adding the baseline votes plus the margin of error
+                double canVotesDouble = pollp * discVotes;
+                //
+                canVotes = (int)canVotesDouble;
+                //How many votes the candidate gets per district
+                simVotes += (double)discVotes;
+                //Total voter turn out in the district
+                canTotalVotes += canVotes;
+                //Total votes for candidate, each district/Iteraion of the loop adds its ammount of votes from canVotes 
+            }
+        simPerc = ((double)canTotalVotes/simVotes)*100.0;
+        //Total percentage of votes from the districs for one simulation  
+        genSims(simVotes,simPerc,canTotalVotes,numSim);
+        totalSimPerc += simPerc;
+        }
+        avrgVotePerc(totalSimPerc, simPerc);
+    }
+
+public static void avrgVotePerc(double totalSimPerc, double simPerc) {
+    //totalSimPerc += simPerc;
+    //totalSimPerc ;
+    //double totalCanVotePerc = 0;
+    //for(int percs =1; percs <= NUM_SIMS; percs++) {
+    //   totalCanVotePerc += simPerc;
+   // }
+    
+    System.out.println();
+
+    double avgVotePerc = totalSimPerc/(double)NUM_SIMS;
+
+    System.out.println("Average vote percentage: " + avgVotePerc + "%");
+}
+
+
+
+
+public static void genSims(double simVotes, double simPerc,int canTotalVotes, int numSim) {
+    //double totalSimPerc = ();
+    //totalSimPerc += simPerc;
+    //for(int simTimes = 1; simTimes <= NUM_SIMS; simTimes++) {
+            System.out.println("Running simulation #" + numSim + ":"/*simTimes*/);
+            boolean didWeWin = ((canTotalVotes) > ((int)simVotes - canTotalVotes));
+            System.out.println("  Win? " + didWeWin);
+            System.out.println("  Results: " + canTotalVotes + " (" + simPerc
+                + "%) - " + ((int)simVotes - canTotalVotes) + " (" + (100 - simPerc)+ "%)");
+
+            int visWin = (canTotalVotes/100);
+            int visLoss = (((int)simVotes - canTotalVotes)/100);
+            System.out.print("  Visualization: " );
+                for(int visWinPrints = 0; visWinPrints < visWin; visWinPrints++) {
+                    System.out.print("+");
+                }
+                System.out.println();
+                System.out.print("                 ");
+                for(int visLossPrints = 0; visLossPrints < visLoss; visLossPrints++) {
+                    System.out.print("-");
+
+                    
+                }
+                
+            System.out.println();            
+            //System.out.println("Average vote percentage: " + (totalSimPerc/NUM_SIMS) + "%");
+    //}
+}
+
+
+
+
+
+
+
+//end culry brakets 
+}

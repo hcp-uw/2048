@@ -18,9 +18,12 @@ def start_game():
     # declaring an empty list then
     # appending 4 list each with four
     # elements as 0.
+
+    rows = int(input("Enter rows : "))
+    cols = int(input("Enter columns : "))
     mat = []
-    for i in range(4):
-        mat.append([0] * 4)
+    for i in range(rows):
+        mat.append([0] * cols)
  
     # printing controls for user
     print("Commands are as follows : ")
@@ -37,18 +40,21 @@ def start_game():
 # function to add a new 2 in
 # grid at any random empty cell
 def add_new_2(mat):
+
+    rows = len(mat)
+    cols = len(mat[0])
  
    # choosing a random index for
    # row and column.
-    r = random.randint(0, 3)
-    c = random.randint(0, 3)
+    r = random.randint(0, rows-1)
+    c = random.randint(0, cols-1)
  
     # while loop will break as the
     # random cell chosen will be empty
     # (or contains zero)
     while(mat[r][c] != 0):
-        r = random.randint(0, 3)
-        c = random.randint(0, 3)
+        r = random.randint(0, rows-1)
+        c = random.randint(0, cols-1)
  
     # we will place a 2 at that empty
     # random cell.
@@ -57,20 +63,23 @@ def add_new_2(mat):
 # function to get the current
 # state of game
 def get_current_state(mat):
+
+    rows = len(mat)
+    cols = len(mat[0])
  
     # if any cell contains
     # 2048 we have won
-    for i in range(4):
-        for j in range(4):
-            if(mat[i][j]== 2048):
+    for i in range(rows):
+        for j in range(cols):
+            if(mat[i][j] == 2048):
                 return 'WON'
  
     # if we are still left with
     # atleast one empty cell
     # game is not yet over
-    for i in range(4):
-        for j in range(4):
-            if(mat[i][j]== 0):
+    for i in range(rows):
+        for j in range(cols):
+            if(mat[i][j] == 0):
                 return 'GAME NOT OVER'
  
     # or if no cell is empty now
@@ -78,17 +87,17 @@ def get_current_state(mat):
     # up or down, if any two cells
     # gets merged and create an empty
     # cell then also game is not yet over
-    for i in range(3):
-        for j in range(3):
-            if(mat[i][j]== mat[i + 1][j] or mat[i][j]== mat[i][j + 1]):
+    for i in range(rows-1):
+        for j in range(cols-1):
+            if(mat[i][j] == mat[i + 1][j] or mat[i][j] == mat[i][j + 1]):
                 return 'GAME NOT OVER'
  
-    for j in range(3):
-        if(mat[3][j]== mat[3][j + 1]):
+    for j in range(cols-1):
+        if(mat[rows - 1][j] == mat[rows - 1][j + 1]):
             return 'GAME NOT OVER'
  
-    for i in range(3):
-        if(mat[i][3]== mat[i + 1][3]):
+    for i in range(rows-1):
+        if(mat[i][cols - 1] == mat[i + 1][cols - 1]):
             return 'GAME NOT OVER'
  
     # else we have lost the game
@@ -101,6 +110,9 @@ def get_current_state(mat):
 # after every step before and
 # after merging cells.
 def compress(mat):
+
+    rows = len(mat)
+    cols = len(mat[0])
  
     # bool variable to determine
     # any change happened or not
@@ -110,19 +122,19 @@ def compress(mat):
     new_mat = []
  
     # with all cells empty
-    for i in range(4):
-        new_mat.append([0] * 4)
+    for i in range(rows):
+        new_mat.append([0] * cols)
          
     # here we will shift entries
     # of each cell to it's extreme
     # left row by row
     # loop to traverse rows
-    for i in range(4):
+    for i in range(rows):
         pos = 0
  
         # loop to traverse each column
         # in respective row
-        for j in range(4):
+        for j in range(cols):
             if(mat[i][j] != 0):
                  
                 # if cell is non empty then
@@ -142,11 +154,14 @@ def compress(mat):
 # function to merge the cells
 # in matrix after compressing
 def merge(mat):
+
+    rows = len(mat)
+    cols = len(mat[0])
      
     changed = False
      
-    for i in range(4):
-        for j in range(3):
+    for i in range(rows):
+        for j in range(cols - 1):
  
             # if current cell has same value as
             # next cell in the row and they
@@ -169,21 +184,29 @@ def merge(mat):
 # means reversing the content of
 # each row (reversing the sequence)
 def reverse(mat):
-    new_mat =[]
-    for i in range(4):
+
+    rows = len(mat)
+    cols = len(mat[0])
+
+    new_mat = []
+    for i in range(rows):
         new_mat.append([])
-        for j in range(4):
-            new_mat[i].append(mat[i][3 - j])
+        for j in range(cols):
+            new_mat[i].append(mat[i][cols - 1 - j])
     return new_mat
  
 # function to get the transpose
 # of matrix means interchanging
 # rows and column
 def transpose(mat):
+
+    rows = len(mat)
+    cols = len(mat[0])
+
     new_mat = []
-    for i in range(4):
+    for i in range(rows):
         new_mat.append([])
-        for j in range(4):
+        for j in range(cols):
             new_mat[i].append(mat[j][i])
     return new_mat
  

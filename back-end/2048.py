@@ -69,5 +69,5 @@ while(True):
  
     # print the matrix after each
     # move.
-    for i in range(4):
+    for i in range(len(mat)):
         print(mat[i])

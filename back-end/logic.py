@@ -192,22 +192,37 @@ def reverse(mat):
     for i in range(rows):
         new_mat.append([])
         for j in range(cols):
-            new_mat[i].append(mat[i][cols - 1 - j])
+            new_mat[i].append(mat[i][cols-1-j])
     return new_mat
  
 # function to get the transpose
-# of matrix means interchanging
-# rows and column
-def transpose(mat):
+# of matrix by rotating 
+# 90 degrees left
+def transpose_left(mat):
 
     rows = len(mat)
     cols = len(mat[0])
 
     new_mat = []
-    for i in range(rows):
+    for i in range(cols):
         new_mat.append([])
-        for j in range(cols):
-            new_mat[i].append(mat[j][i])
+        for j in range(rows):
+            new_mat[i].append(mat[j][cols-i-1])
+    return new_mat
+
+# function to get the transpose
+# of matrix by rotating 
+# 90 degrees right
+def transpose_right(mat):
+
+    rows = len(mat)
+    cols = len(mat[0])
+
+    new_mat = []
+    for i in range(cols):
+        new_mat.append([])
+        for j in range(rows):
+            new_mat[i].append(mat[rows-j-1][rows-i])
     return new_mat
  
 # function to update the matrix
@@ -252,7 +267,7 @@ def move_up(grid):
  
     # to move up we just take
     # transpose of matrix
-    new_grid = transpose(grid)
+    new_grid = transpose_left(grid)
  
     # then move left (calling all
     # included functions) then
@@ -260,7 +275,7 @@ def move_up(grid):
  
     # again take transpose will give
     # desired results
-    new_grid = transpose(new_grid)
+    new_grid = transpose_right(new_grid)
     return new_grid, changed
  
 # function to update the matrix
@@ -268,14 +283,14 @@ def move_up(grid):
 def move_down(grid):
  
     # to move down we take transpose
-    new_grid = transpose(grid)
+    new_grid = transpose_left(grid)
  
     # move right and then again
     new_grid, changed = move_right(new_grid)
  
     # take transpose will give desired
     # results.
-    new_grid = transpose(new_grid)
+    new_grid = transpose_right(new_grid)
     return new_grid, changed
  
 # this file only contains all the logic

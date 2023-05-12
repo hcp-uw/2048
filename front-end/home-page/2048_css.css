@@ -1,0 +1,205 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+h1 {
+    position: absolute;
+    width: 28.125%;
+    height: 12.793%;
+    left: 38.903%;
+    top: 18.164%;
+
+    font-family: "cooper-black-std", serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 800%;
+    line-height: 14.355%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: re;
+}
+
+
+
+.bottomBar {
+    position: absolute;
+    width: 100%;
+    height: 2.93%;
+    left: 0%;
+    top: 97.07%;
+
+    background: #89023E;
+}
+
+
+.topBar1 {
+    position: absolute;
+    width: 100%;
+    height: 10.06%;
+    left: 0%;
+    top: 0%;
+    background: #89023E;
+}
+
+
+.guestIcon {
+    position: absolute;
+    width: 5.55%;
+    height: 82%;
+    right: 1%;
+    left: 1348px;
+    top: 35px;
+    transform: translateY(-50%);
+    
+    background: url(pngegg.png), #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.guestIcon i {
+    color: #89023e;
+    font-size: 43px;
+}
+
+.play-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #89023e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 70px;
+  }
+
+  
+.play-button i {
+    color: #fff;
+    font-size: 40px;
+}
+/* Group 54 
+
+position: absolute;
+width: 585px;
+height: 84px;
+left: 427px;
+top: 682px;
+
+
+
+ Rectangle 3
+
+position: absolute;
+width: 585px;
+height: 84px;
+left: 427px;
+top: 682px;
+
+background: #FFD9DA;
+border-radius: 10px;
+
+
+ Leaderboard
+
+position: absolute;
+width: 513px;
+height: 50px;
+left: 463px;
+top: 699px;
+
+font-family: 'Exo 2';
+font-style: normal;
+font-weight: 400;
+font-size: 48px;
+line-height: 58px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+
+
+tutorialsButton1 
+
+position: absolute;
+width: 347px;
+height: 46px;
+left: 546px;
+top: 812px;
+
+
+
+tutorialsButtonSquare1 
+
+position: absolute;
+width: 347px;
+height: 46px;
+left: 546px;
+top: 812px;
+
+background: #FFD9DA;
+border-radius: 10px;
+
+
+Tutorials 
+
+position: absolute;
+width: 328px;
+height: 34px;
+left: 556px;
+top: 818px;
+
+font-family: 'Exo 2';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 38px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+
+
+
+playButton1
+
+position: absolute;
+width: 175px;
+height: 175px;
+left: 632px;
+top: 425px;
+
+
+
+playButtonCircle1
+
+position: absolute;
+width: 175px;
+height: 175px;
+left: 632px;
+top: 425px;
+
+background: #89023E;
+
+
+play1 
+
+position: absolute;
+width: 78px;
+height: 78px;
+left: 759px;
+top: 473px;
+
+background: #FFFFFF;
+transform: rotate(90deg); */

@@ -1,0 +1,31 @@
+body {
+  background-color: #ffeedb;
+}
+
+img {
+  height: 75vh;
+}
+
+#menu {
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#play {
+  font-size: 400pt;
+  color: black;
+}
+
+#play:hover{
+  border-radius: 50%;
+  background-color: black;
+  color: #ffeedb;
+}

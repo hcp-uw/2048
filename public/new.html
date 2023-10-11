@@ -15,8 +15,6 @@
   </head>
   <body>
     <div id="menu">
-      <h1>2048</h1>
-      <h2>Multiplayer</h2>
       <form>
         <h3>Select Grid Size</h3>
         <div>
@@ -36,13 +34,17 @@
         </div>
       </form>
     </div>
-    <div id="result" class="hidden">
-      <div id="result-msg"></div>
-      <button>Play Again!</button>
-    </div>
     <div id="game" class="hidden">
-      <h2>Player 1's Turn</h2>
+      <div id="game-side">
+        <h2>Player 1's Turn</h2>
+        <a href="main_menu.html" id="home" class="hidden">
+          <i class="fa-solid fa-house"></i>
+        </a>
+      </div>
       <div class="grid"></div>
+    </div>
+    <div id="result" class="hidden">
+      <p id="result-msg"></p>
     </div>
   </body>
 </html>

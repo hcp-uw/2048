@@ -9,6 +9,7 @@
   let size;
   let width;
   let height;
+  let ended;
 
   /**
    * Add a function that will be called when the window is loaded.
@@ -84,6 +85,7 @@
     id("menu").classList.add("hidden");
     player1 = true;
     changePlayer();
+    ended = false;
   }
 
   function createBoard(height, width) {
@@ -113,30 +115,22 @@
   function control(event) {
     // need to change if board changed, if so, play = true and then add new block
     let play = false;
-    if (event.keyCode === 39) { // right
+    if ((event.keyCode === 39 && player1) || (event.keyCode === 68 && !player1)) { // right
       moveRight();
       combineRow();
       moveRight();
-      // generateRandomNum();
-      // play = true;
-    } else if (event.keyCode === 37) { // left
+    } else if ((event.keyCode === 37 && player1) || (event.keyCode === 65 && !player1)) { // left
       moveLeft();
       combineRow();
       moveLeft();
-      // generateRandomNum();
-      // play = true;
-    } else if (event.keyCode === 38) { // up
+    } else if ((event.keyCode === 38 && player1) || (event.keyCode === 87 && !player1)) { // up
       moveUp();
       combineCol();
       moveUp();
-      // generateRandomNum();
-      // play = true;
-    } else if (event.keyCode === 40) { // down
+    } else if ((event.keyCode === 40 && player1) || (event.keyCode === 83 && !player1)) { // down
       moveDown();
       combineCol();
       moveDown();
-      // generateRandomNum();
-      // play = true;
     }
     for (let i = 0; i < size; i++) {
 
@@ -148,7 +142,9 @@
     }
     console.log(play);
     if (play) {
-      generateRandomNum();
+      if (!ended) {
+        generateRandomNum();
+      }
       let zeroes = 0;
       for (let i = 0; i < squares.length; i++) {
         if (squares[i].innerHTML == "") {
@@ -160,7 +156,9 @@
         endGame(false);
       }
       displayBoard();
-      changePlayer();
+      if (!ended) {
+        changePlayer();
+      }
     }
   }
 
@@ -286,27 +284,29 @@
       qs("body").classList.add("p2-background");
       player1 = true;
     }
-    qs("body > h2").textContent = "Player " + player + "'s Turn";
+    qs("#game-side > h2").textContent = "Player " + player + "'s Turn";
   }
 
   function endGame(win) {
+    ended = true;
     document.removeEventListener("keyup", control);
     let winner;
     if (win) {
       if (player1) {
-        winner = "1";
-      } else {
         winner = "2";
+      } else {
+        winner = "1";
       }
     } else {
       if (player1) {
-        winner = "2";
-      } else {
         winner = "1";
+      } else {
+        winner = "2";
       }
     }
     console.log(winner)
-    id("result").classList.remove("hidden");
+    qs("#game-side h2").textContent = "Player " + winner + " won!";
+    id("home").classList.remove("hidden");
   }
 
   function displayBoard() {

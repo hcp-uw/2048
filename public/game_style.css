@@ -1,0 +1,195 @@
+.game-single4x4-new {
+    background-color: rgba(249, 196, 196, 1);
+    padding: 34px 93px 84px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid rgba(0, 0, 0, 0);
+    width: 1440px;
+    height: 1024px;
+  }
+  .vector {
+    width: 4.96%;
+    height: 0.66%;
+    background-color: rgba(0, 0, 0, 1);
+    margin-bottom: 21px;
+    margin-left: 26px;
+  }
+  .flex-wrapper-three {
+    display: flex;
+    align-items: center;
+  }
+  .flex-wrapper-four {
+    margin-right: 29px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+    align-items: center;
+    text-align: center;
+  }
+  #menu-button {
+    width: 14.6%;
+    height: 0.74%;
+    background-color: rgba(0, 0, 0, 1);
+    margin-left: 26px;
+  }
+  .num-4-x-4 {
+    height: 117px;
+    width: 452px;
+    font-family: "Exo 2";
+    font-size: 96px;
+    font-weight: 600;
+    line-height: normal;
+    color: rgba(0, 0, 0, 1);
+    text-align: center;
+    margin-bottom: 19px;
+  }
+  .sidebar {
+    margin-bottom: 118px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .rectangle-5 {
+    width: 300px;
+    height: 250px;
+    background-color: rgba(231, 80, 132, 1);
+    border-radius: 10px;
+    /* position: absolute; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 25px;
+    /* right: 70px; */
+    /* bottom: -58px; */
+  }
+  .score {
+    height: 117px;
+    width: 452px;
+    font-family: "Exo 2";
+    font-size: 42px;
+    font-weight: 600;
+    line-height: normal;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    position: relative;
+  }
+  .flex-wrapper-two {
+    background-color: rgba(255, 255, 255, 1);
+    margin-top: -100px;
+    border-radius: 50%;
+    padding: 32px 35px 31.99px 34px;
+    display: flex;
+    align-items: center;
+  }
+  .vector-three {
+    height: 100%;
+    flex: 1;
+    object-fit: cover;
+  }
+  .game-field {
+    background-color: rgba(255, 238, 219, 1);
+    border-radius: 15px;
+    padding: 38px 37px 35px 36px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 50px;
+    height: 850px;
+    width: 850px;
+  }
+  .flex-wrapper-five {
+    display: flex;
+    align-items: flex-start;
+  }
+  .flex-wrapper-five:not(:last-of-type) {
+    margin-bottom: 23px;
+  }
+  .rectangle-14 {
+    width: 177px;
+    height: 177px;
+    background-color: rgba(223, 212, 198, 1);
+    border-radius: 15px;
+  }
+
+
+  .blocks {
+    background-color: rgba(249, 196, 196, 1);
+    padding: 94px 330px 94px 413px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid rgba(0, 0, 0, 1);
+  }
+  .flex-wrapper-one {
+    margin-bottom: 42px;
+    display: flex;
+    align-items: flex-start;
+  }
+  .block-2 {
+    width: 177px;
+    height: 177px;
+  }
+
+  .block-2:not(:last-of-type) {
+    margin-right: 83px;
+  }
+
+  .block-32 {
+    width: 177px;
+    height: 177px;
+    margin-right: 68px;
+  }
+
+  .block-4 {
+    width: 177px;
+    height: 177px;
+    margin-right: 83px;
+  }
+
+  .block-64 {
+    width: 177px;
+    height: 177px;
+    margin-right: 58px;
+  }
+
+  .block-1024 {
+    width: 200px;
+    height: 177px;
+  }
+
+  .flex-wrapper-three {
+    padding: 0 0 0 14px;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .flex-wrapper-three:not(:last-of-type) {
+    margin-bottom: 42px;
+  }
+
+  .block-128 {
+    width: 200px;
+    height: 177px;
+  }
+
+  .block-128:not(:last-of-type) {
+    margin-right: 46px;
+  }
+
+  .block-256 {
+    width: 200px;
+    height: 177px;
+    margin-right: 58px;
+  }
+
+  .rectangle-16 {
+    width: 177px;
+    height: 177px;
+    border-radius: 15px;
+  }

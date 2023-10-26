@@ -92,7 +92,6 @@
     squares = [];
     qs(".grid").innerHTML = "";
     size = height * width;
-    console.log("size" + size);
     qs(".grid").style.height = height * 100 + "px";
     qs(".grid").style.width= width * 100 + "px";
     for (let i = 0; i < size; i++) {
@@ -100,7 +99,6 @@
       square.classList.add("block");
       qs(".grid").appendChild(square);
       squares.push(square);
-      console.log("create " + squares.length);
     }
     generateRandomNum();
     generateRandomNum();
@@ -136,14 +134,10 @@
       moveDown();
     }
     for (let i = 0; i < size; i++) {
-
       if (squares[i].innerHTML !== prevTurn[i].innerHTML) {
-        console.log("square " + squares[i].innerHTML);
-        console.log("prev " + prevTurn[i].innerHTML);
         play = true;
       }
     }
-    console.log(play);
     if (play) {
       if (!ended) {
         generateRandomNum();
@@ -185,23 +179,10 @@
     }
   }
 
-  // function combineRowR() {
-  //   for (let i = 0; i < squares.length - 1; i++){
-  //     if (squares[i].innerHTML != "" & squares[i].innerHTML === squares[i + 1].innerHTML) {
-  //       let total = parseInt(squares[i].innerHTML) + parseInt(squares[i + 1].innerHTML);
-  //       squares[i].innerHTML = total;
-  //       squares[i + 1].innerHTML = 0;
-  //       if (total == 2048) {
-  //         endGame(true);
-  //       }
-  //     }
-  //   }
-  // }
-
   function combineRowR() {
     for (let i = 0; i < height; i++){
       for (let j = 0; j < width - 1; j++) {
-        let pos = i * height + j;
+        let pos = i * width + j;
         if (squares[pos].innerHTML != "" & squares[pos].innerHTML === squares[pos + 1].innerHTML) {
           let total = parseInt(squares[pos].innerHTML) + parseInt(squares[pos + 1].innerHTML);
           squares[pos + 1].innerHTML = total;
@@ -217,7 +198,7 @@
   function combineRowL() {
     for (let i = 0; i < height; i++){
       for (let j = 1; j < width; j++) {
-        let pos = i * height + j;
+        let pos = i * width + j;
         if (squares[pos].innerHTML != "" & squares[pos].innerHTML === squares[pos - 1].innerHTML) {
           let total = parseInt(squares[pos].innerHTML) + parseInt(squares[pos - 1].innerHTML);
           squares[pos - 1].innerHTML = total;
@@ -229,19 +210,6 @@
       }
     }
   }
-
-  // function combineColU() {
-  //   for (let i = 0; i < width * (height - 1); i++){
-  //     if (squares[i].innerHTML != "" & squares[i].innerHTML === squares[i + width].innerHTML) {
-  //       let total = parseInt(squares[i].innerHTML) + parseInt(squares[i + width].innerHTML);
-  //       squares[i].innerHTML = total;
-  //       squares[i + width].innerHTML = 0;
-  //       if (total == 2048) {
-  //         endGame(true);
-  //       }
-  //     }
-  //   }
-  // }
 
   function combineColD() {
     for (let i = 0; i < width * (height - 1); i++){
@@ -280,7 +248,6 @@
         let missing = width - filteredRow.length;
         let zeroes = Array(missing).fill("");
         let newRow = zeroes.concat(filteredRow);
-        console.log(newRow);
         for (let j = 0; j < width; j++) {
           squares[i + j].innerHTML = newRow[j];
         }
@@ -393,7 +360,6 @@
         winner = "2";
       }
     }
-    console.log(winner)
     qs("#game-side h2").textContent = "Player " + winner + " won!";
     id("home").classList.remove("hidden");
   }

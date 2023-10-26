@@ -92,7 +92,6 @@
     squares = [];
     qs(".grid").innerHTML = "";
     size = height * width;
-    console.log("size" + size);
     qs(".grid").style.height = height * 100 + "px";
     qs(".grid").style.width= width * 100 + "px";
     for (let i = 0; i < size; i++) {
@@ -100,7 +99,6 @@
       square.classList.add("block");
       qs(".grid").appendChild(square);
       squares.push(square);
-      console.log("create " + squares.length);
     }
     generateRandomNum();
     generateRandomNum();
@@ -109,6 +107,9 @@
       prevTurn.push(prevSquare);
       prevTurn[i].innerHTML = squares[i].innerHTML;
     }
+    // for (let i = 0; i < size; i++) {
+    //   squares[i].innerHTML = i;
+    // }
     displayBoard();
   }
 
@@ -117,30 +118,26 @@
     let play = false;
     if ((event.keyCode === 39 && player1) || (event.keyCode === 68 && !player1)) { // right
       moveRight();
-      combineRow();
+      combineRowR();
       moveRight();
     } else if ((event.keyCode === 37 && player1) || (event.keyCode === 65 && !player1)) { // left
       moveLeft();
-      combineRow();
+      combineRowL();
       moveLeft();
     } else if ((event.keyCode === 38 && player1) || (event.keyCode === 87 && !player1)) { // up
       moveUp();
-      combineCol();
+      combineColU();
       moveUp();
     } else if ((event.keyCode === 40 && player1) || (event.keyCode === 83 && !player1)) { // down
       moveDown();
-      combineCol();
+      combineColD();
       moveDown();
     }
     for (let i = 0; i < size; i++) {
-
       if (squares[i].innerHTML !== prevTurn[i].innerHTML) {
-        console.log("square " + squares[i].innerHTML);
-        console.log("prev " + prevTurn[i].innerHTML);
         play = true;
       }
     }
-    console.log(play);
     if (play) {
       if (!ended) {
         generateRandomNum();
@@ -153,7 +150,13 @@
         prevTurn[i].innerHTML = squares[i].innerHTML;
       }
       if (zeroes === 0) {
-        endGame(false);
+        let move = checkMoveX();
+        if (!move) {
+          move = checkMoveY();
+        }
+        if (!move) {
+          endGame(false);
+        }
       }
       displayBoard();
       if (!ended) {
@@ -176,12 +179,44 @@
     }
   }
 
-  function combineRow() {
-    for (let i = 0; i < squares.length - 1; i++){
-      if (squares[i].innerHTML != "" & squares[i].innerHTML === squares[i + 1].innerHTML) {
-        let total = parseInt(squares[i].innerHTML) + parseInt(squares[i + 1].innerHTML);
-        squares[i].innerHTML = total;
-        squares[i + 1].innerHTML = 0;
+  function combineRowR() {
+    for (let i = 0; i < height; i++){
+      for (let j = width - 2; j >= 0; j--) {
+        let pos = i * width + j;
+        if (squares[pos].innerHTML != "" & squares[pos].innerHTML === squares[pos + 1].innerHTML) {
+          let total = parseInt(squares[pos].innerHTML) + parseInt(squares[pos + 1].innerHTML);
+          squares[pos + 1].innerHTML = total;
+          squares[pos].innerHTML = 0;
+          if (total == 2048) {
+            endGame(true);
+          }
+        }
+      }
+    }
+  }
+
+  function combineRowL() {
+    for (let i = 0; i < height; i++){
+      for (let j = 1; j < width; j++) {
+        let pos = i * width + j;
+        if (squares[pos].innerHTML != "" & squares[pos].innerHTML === squares[pos - 1].innerHTML) {
+          let total = parseInt(squares[pos].innerHTML) + parseInt(squares[pos - 1].innerHTML);
+          squares[pos - 1].innerHTML = total;
+          squares[pos].innerHTML = 0;
+          if (total == 2048) {
+            endGame(true);
+          }
+        }
+      }
+    }
+  }
+
+  function combineColD() {
+    for (let i = width * (height - 1) - 1; i >= 0; i--) {
+      if (squares[i].innerHTML != "" & squares[i].innerHTML === squares[i + width].innerHTML) {
+        let total = parseInt(squares[i].innerHTML) + parseInt(squares[i + width].innerHTML);
+        squares[i + width].innerHTML = total;
+        squares[i].innerHTML = 0;
         if (total == 2048) {
           endGame(true);
         }
@@ -189,12 +224,12 @@
     }
   }
 
-  function combineCol() {
-    for (let i = 0; i < width * (height - 1); i++){
-      if (squares[i].innerHTML != "" & squares[i].innerHTML === squares[i + width].innerHTML) {
-        let total = parseInt(squares[i].innerHTML) + parseInt(squares[i + width].innerHTML);
-        squares[i].innerHTML = total;
-        squares[i + width].innerHTML = 0;
+  function combineColU() {
+    for (let i = width; i < width * height; i++){
+      if (squares[i].innerHTML != "" & squares[i].innerHTML === squares[i - width].innerHTML) {
+        let total = parseInt(squares[i].innerHTML) + parseInt(squares[i - width].innerHTML);
+        squares[i - width].innerHTML = total;
+        squares[i].innerHTML = 0;
         if (total == 2048) {
           endGame(true);
         }
@@ -213,7 +248,6 @@
         let missing = width - filteredRow.length;
         let zeroes = Array(missing).fill("");
         let newRow = zeroes.concat(filteredRow);
-        console.log(newRow);
         for (let j = 0; j < width; j++) {
           squares[i + j].innerHTML = newRow[j];
         }
@@ -287,6 +321,28 @@
     qs("#game-side > h2").textContent = "Player " + player + "'s Turn";
   }
 
+  function checkMoveX() {
+    for (let i = 0; i < height; i++) {
+      for (let j = 0; j < width - 1; j++) {
+        if (squares[i * height + j].innerHTML === squares[i * height + j + 1].innerHTML) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  function checkMoveY() {
+    for (let i = 0; i < height - 1; i++) {
+      for (let j = 0; j < width; j++) {
+        if (squares[i * height + j].innerHTML === squares[(i + 1) * height + j].innerHTML) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   function endGame(win) {
     ended = true;
     document.removeEventListener("keyup", control);
@@ -304,7 +360,6 @@
         winner = "2";
       }
     }
-    console.log(winner)
     qs("#game-side h2").textContent = "Player " + winner + " won!";
     id("home").classList.remove("hidden");
   }

@@ -181,7 +181,7 @@
 
   function combineRowR() {
     for (let i = 0; i < height; i++){
-      for (let j = 0; j < width - 1; j++) {
+      for (let j = width - 2; j >= 0; j--) {
         let pos = i * width + j;
         if (squares[pos].innerHTML != "" & squares[pos].innerHTML === squares[pos + 1].innerHTML) {
           let total = parseInt(squares[pos].innerHTML) + parseInt(squares[pos + 1].innerHTML);
@@ -212,7 +212,7 @@
   }
 
   function combineColD() {
-    for (let i = 0; i < width * (height - 1); i++){
+    for (let i = width * (height - 1) - 1; i >= 0; i--) {
       if (squares[i].innerHTML != "" & squares[i].innerHTML === squares[i + width].innerHTML) {
         let total = parseInt(squares[i].innerHTML) + parseInt(squares[i + width].innerHTML);
         squares[i + width].innerHTML = total;
